@@ -7,6 +7,17 @@ mongoose.connect(process.env.MONGO_URI, {
 
 let Person;
 
+const personSchema = new mongoose.schema({
+  name:{
+    type: String,
+    required : true
+  },
+  age : Number,
+  favoriteFoods : String
+});
+
+Person = mongoose.model('person', personSchema);
+
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
 };
