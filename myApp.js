@@ -5,6 +5,16 @@ mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true, 
   useUnifiedTopology: true });
 
+const db = mongoose.connection;
+
+db.on("error", (err) => {
+  console.error("❌ MongoDB connection error:", err);
+});
+
+db.once("open", () => {
+  console.log("✅ MongoDB connected successfully!");
+});
+
 let Person;
 
 const personSchema = new mongoose.Schema({
@@ -18,8 +28,15 @@ const personSchema = new mongoose.Schema({
 
 Person = mongoose.model('Person', personSchema);
 
+
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+  var Fifi =   new Person({name: "Fifi", age: 19, favoriteFoods: ["chicken nuggets", "seafood"]});
+  Fifi.save(function(err, data){
+    if(err){
+      return console.error(err);
+    }
+     done(null, data);
+  })
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
