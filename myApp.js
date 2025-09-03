@@ -40,13 +40,14 @@ const createAndSavePerson = (done) => {
   })
 };
 
-
-const createManyPeople = (arrayOfPeople, done) => {
   var arrayOfPeople = [
     {name: "John", age: 20, favoriteFoods: ["pizza", "pasta"]},
     {name: "Jane", age: 25, favoriteFoods: ["salad", "sushi"]},
     {name: "Mike", age: 30, favoriteFoods: ["steak", "fries"]}
   ]
+
+const createManyPeople = (arrayOfPeople, done) => {
+
   arrayOfPeople.save(function(err, data){
     if(err){
       return console.error(err);
