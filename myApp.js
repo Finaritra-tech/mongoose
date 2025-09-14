@@ -54,9 +54,11 @@ var createManyPeople = function(arrayOfPeople, done) {
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName}, function (err, data) {
+    if (err) return console.log(err);
+    done(null, data);
+  })
 };
-
 const findOneByFood = (food, done) => {
   done(null /*, data*/);
 };
